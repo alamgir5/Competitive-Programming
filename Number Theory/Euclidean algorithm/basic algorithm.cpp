@@ -23,6 +23,20 @@ int gcd(int a,int b)
 	return gcd(b,a%b);
 }
 
+int GCD(int a, int b)
+{
+    if (a == 0 || b == 0)
+        return 0;
+
+    else if (a == b)
+        return a;
+
+    else if (a > b)
+        return gcd(a - b, b);
+
+    else return gcd(a, b - a);
+}
+
 int main()
 {
 	int t;
@@ -33,6 +47,7 @@ int main()
 		cin>>a>>b;
 		int ans=gcd(a,b);
 		cout<<ans<<nl;
+		cout<<GCD(a,b)<<nl;
 	}
 	return 0;
 }
