@@ -1,44 +1,84 @@
-#include<bits/stdc++.h>
-using  namespace  std;
+#include <bits/stdc++.h>
+using namespace std;
 
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define pi          acos(-1.0)
+#define nl          '\n'
 
-#define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+/**-------Library-------*/
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define all(a)         a.begin(),a.end()
+#define Sort(x)        sort(x.begin(),x.end())
+#define SortR(x)       sort(x.begin(),x.end(),greater<int>())
+#define Reverse(x)     reverse(x.begin(),x.end())
 
-#define faster  ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define Sum(A,n)       accumulate(A,A+n,0)
+#define SortA(ar,s)    sort(ar,ar+s)
+#define SortD(ar,s)    sort(ar,ar+s,greater<int>())
+#define maxa(A,n)      *max_element(A,A+n)
+#define mina(A,n)      *min_element(A,A+n)
+#define gcd(a,b)       __gcd(a,b)
+#define lcm(a,b)       (a*(b/gcd(a,b)))
+#define sq(x)          (x)*(x)
+#define mid(l,r)       (l+(r-l)/2)
 
-#define sq(x)   (x)*(x)
-#define PI      acos(-1.0)
-#define all(x) x.begin(),x.end()
-#define nl      '\n'
- #define mod 1000000007
+#define trzero(x)       __builtin_ctz(x)
+#define parity(x)       __builtin_parity(x)
+#define countone(x)     __builtin_popcount(x)
+#define left(p)         (p<<1)
+#define right(p)        (p>>1)
+
+#define min3(a,b,c)       min(a,min(b,c))
+#define min4(a,b,c,d)     min(a,min(b,min(c,d)))
+#define max3(a,b,c)       max(a,max(b,c))
+#define max4(a,b,c,d)     max(a,max(b,max(c,d)))
+#define pb(x)             push_back(x)
+#define mod               1000000007
+#define precision(x)      cout<<fixed<<setprecision(x)
+#define nel               cout<<nl
+#define yes               cout<<"YES"<<nl
+#define no                cout<<"NO"<<nl
+
+/**----------Graph Moves----------*/
+const int fx[] = {+1,-1,+0,+0};                         // 4 X directions
+const int fy[] = {+0,+0,+1,-1};                         // 4 Y directions
+const int fx8[] = {+0,+0,+1,-1,-1,+1,-1,+1};            // King X Moves
+const int fy8[] = {-1,+1,+0,+0,+1,+1,-1,-1};            // King Y Moves
+const int kx[] = {-2, -2, -1, -1,  1,  1,  2,  2};      // Knight X Moves
+const int ky[] = {-1,  1, -2,  2, -2,  2, -1,  1};      // Knight Y Moves
+
+/**----data type----*/
 typedef long long int ll;
 typedef unsigned long long int  llu;
-int prime[90000001];
-int n=90000000;
+
+#define mx 90000001
+
+bool prime[mx];
+
 vector<int>v;
+
 void sieve()
 {
-	//int n=100000;
-	//vector<int>v;
-	memset(prime,0,sizeof(prime));
-	for(int i=2;i*i<=n;i++)
+	memset(prime,true,sizeof(prime));
+
+	for(int i=2;i*i<=mx;i++)
 	{
-		if(prime[i]==0)
+		if(prime[i])
 		{
-			for(int j=i*i;j<=n;j+=i)
+			for(int j=i*i;j<=mx;j+=i)
 			{
-				prime[j]=1;
+				prime[j]=false;
 			}
 		}
 	}
-	for(int i=2;i<=n;i++)
+
+	for(int i=2;i<=mx;i++)
 	{
-		if(prime[i]==0)v.push_back(i);
+		if(prime[i])
+            	  v.push_back(i);
 	}
 }
+
 int main()
 {
 	sieve();
@@ -48,13 +88,15 @@ int main()
 	{
 		int n;
 		cin>>n;
+
 		/*
 		for(int i=2;i<=n;i++)
 		{
-			if(prime[i]==0)cout<<i<<" ";
+			if(prime[i])cout<<i<<" ";
 		}
 		cout<<nl;
 		*/
+
 		cout<<v[n-1]<<nl;
 	}
 	return 0;
